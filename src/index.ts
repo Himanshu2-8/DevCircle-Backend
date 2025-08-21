@@ -19,6 +19,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.get("/public/questions", async (req: Request, res: Response) => {
   try {
     const questions = await prisma.question.findMany({
